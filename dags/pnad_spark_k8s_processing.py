@@ -255,7 +255,6 @@ with DAG(
 
 
 converte_parquet >> converte_parquet_monitor 
-converte_parquet_monitor >> tratamento_de_dados >> converte_parquet_monitor
 converte_parquet_monitor >> tratamento_de_dados >> tratamento_de_dados_monitor
 
 tratamento_de_dados_monitor >> agregacao_por_regiao >> agregacao_por_regiao_monitor
