@@ -152,9 +152,9 @@ with DAG(
         kubernetes_conn_id="kubernetes_default",
     )
 
-    trigger_crawler_faixa_etaria = PythonOperator(
-        task_id='trigger_crawler_faixa_etaria',
-        python_callable=trigger_crawler_faixa_etaria,
+    trigger_crawler_escolaridade = PythonOperator(
+        task_id='trigger_crawler_escolaridade',
+        python_callable=trigger_crawler_escolaridade,
     )
 
     ###########################################
