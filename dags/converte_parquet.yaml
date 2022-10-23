@@ -17,7 +17,7 @@ spec:
   type: Python
   pythonVersion: "3"
   mode: cluster
-  image: "docker.io/atheobaldo/spark-operator"
+  image: "docker.io/atheobaldo/spark-operator:3.0.0-aws"
   imagePullPolicy: Always
   mainApplicationFile: s3a://igti-datalake-astheobaldo/pyspark/job_spark_converte_parquet.py
   sparkVersion: "3.0.0"
