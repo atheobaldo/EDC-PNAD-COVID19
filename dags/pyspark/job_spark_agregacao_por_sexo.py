@@ -40,28 +40,19 @@ if __name__ == "__main__":
     print("** Agregação - por sexo **")
     print("**************************")
 
-    uf_m = (
-        df
-        .where("CO_SEXO = 1")
-        .groupBy("DESC_UF")
-        .agg(count(col("CO_SEXO")).alias("count_m"))
+    df_sexo = (
+        df_pnad
+        .where("CO_FREQUENTA_ESCOLA == 2 and NU_GRUPO_IDADE > -1")
+        .groupBy("DESC_SEXO")
+        .agg(f.count(col("DESC_SEXO")).alias("COUNT"))
     )
-
-    uf_f = (
-        df
-        .where("CO_SEXO = 2")
-        .groupBy("DESC_UF")
-        .agg(count(col("CO_SEXO")).alias("count_f"))
-    )
-
-    uf_sexo = uf_m.join(uf_f, on="DESC_UF", how="inner")
 
     (
-        uf_sexo
+        df_sexo
         .write
         .mode("overwrite")
         .format("parquet")
-        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/uf_sexo')
+        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/alunos-excluidos-por-sexo')
     )
 
     print("**************************************")

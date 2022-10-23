@@ -33,22 +33,23 @@ if __name__ == "__main__":
         .load('s3a://igti-datalake-astheobaldo/datalake/processing-zone/')
     )
 
-    print("****************************")
-    print("** Agregação - por regiao **")
-    print("****************************")
+    print("**************************")
+    print("**  Agregação - por uf  **")
+    print("**************************")
 
-    regiao = (
-        df
-        .groupBy("DESC_REGIAO_PAIS")
-        .agg(count(col("DESC_REGIAO_PAIS")).alias("COUNT"))
+    df_uf = (
+        df_pnad
+        .where("CO_FREQUENTA_ESCOLA == 2 and NU_GRUPO_IDADE > -1")
+        .groupBy("DESC_UF")
+        .agg(f.count(col("DESC_UF")).alias("COUNT"))
     )
 
     (
-        regiao
+        df_uf
         .write
         .mode("overwrite")
         .format("parquet")
-        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/alunos-excluidos-por-regiao')
+        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/alunos-excluidos-por-uf')
     )
 
     print("**************************************")

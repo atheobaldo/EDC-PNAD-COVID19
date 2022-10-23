@@ -243,6 +243,16 @@ def mapeamento_grupo_idade(df_pnad):
          .otherwise(0)
     ))
 
+def mapeamento_faixa_etaria(df_pnad):
+    df_pnad = (
+        df_pnad
+        .withColumn("DESC_FAIXA_ETARIA",  
+        f.when(f.col("NU_GRUPO_IDADE") == 2, 'De 6 a 10 anos') 
+        .when(f.col("NU_GRUPO_IDADE") == 3, 'De 11 a 14 anos') 
+        .when(f.col("NU_GRUPO_IDADE") == 4, 'De 15 a 17 anos') 
+        .otherwise("Não aplicável") 
+    ))
+
 def mapeamento_sexo(df_pnad):
     df_pnad = (
         df_pnad
@@ -394,6 +404,7 @@ if __name__ == "__main__":
     df_pnad = mapeamento_tipo_area(df_pnad)
     df_pnad = mapeamento_condicao_domicilio(df_pnad)
     df_pnad = mapeamento_grupo_idade(df_pnad)
+    df_pnad = mapeamento_faixa_etaria(df_pnad)
     df_pnad = mapeamento_sexo(df_pnad)
     df_pnad = mapeamento_cor(df_pnad)
     df_pnad = mapeamento_escolaridade(df_pnad)

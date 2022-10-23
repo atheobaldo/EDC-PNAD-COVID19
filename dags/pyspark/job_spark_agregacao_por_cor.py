@@ -33,14 +33,14 @@ if __name__ == "__main__":
         .load('s3a://igti-datalake-astheobaldo/datalake/processing-zone/')
     )
 
-    print("****************************")
+    print("**************************")
     print("** Agregação - por regiao **")
-    print("****************************")
+    print("**************************")
 
     regiao = (
         df
         .groupBy("DESC_REGIAO_PAIS")
-        .agg(count(col("DESC_REGIAO_PAIS")).alias("COUNT"))
+        .agg(count(col("DESC_REGIAO_PAIS")).alias("count"))
     )
 
     (
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         .write
         .mode("overwrite")
         .format("parquet")
-        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/alunos-excluidos-por-regiao')
+        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/regiao')
     )
 
     print("**************************************")
