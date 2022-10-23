@@ -33,10 +33,10 @@ spec:
         key: aws_secret_access_key
     cores: 1
     coreLimit: "1200m"
-    memory: "512m"
+    memory: "4g"
     labels:
       version: 3.0.0
-    serviceAccount: spark
+    serviceAccount: airflow-worker
     volumeMounts:
       - name: ivy
         mountPath: /tmp
@@ -48,11 +48,12 @@ spec:
       AWS_SECRET_ACCESS_KEY:
         name: aws-credentials
         key: aws_secret_access_key
-    cores: 2
-    instances: 2
+    cores: 3
+    instances: 3
     memory: "4g"
     labels:
       version: 3.0.0
     volumeMounts:
       - name: ivy
         mountPath: /tmp
+        
