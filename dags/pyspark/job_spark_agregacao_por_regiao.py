@@ -30,7 +30,7 @@ if __name__ == "__main__":
         spark
         .read
         .format("parquet")
-        .load('s3a://igti-datalake-astheobaldo/datalake/silver/pnad-covid19/')
+        .load('s3a://igti-datalake-astheobaldo/datalake/processing-zone/')
     )
 
     print("**************************")
@@ -48,7 +48,7 @@ if __name__ == "__main__":
         .write
         .mode("overwrite")
         .format("parquet")
-        .save('s3a://igti-datalake-astheobaldo/datalake/silver/pnad-covid19/regiao')
+        .save('s3a://igti-datalake-astheobaldo/datalake/consumer-zone/regiao')
     )
 
     print("**************************************")

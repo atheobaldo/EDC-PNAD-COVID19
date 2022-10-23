@@ -40,7 +40,7 @@ if __name__ == "__main__":
     .write
     .mode("overwrite")
     .format("parquet")
-    .save("s3a://igti-datalake-astheobaldo/datalake/bronze/pnad-covid19/")
+    .save("s3a://igti-datalake-astheobaldo/datalake/landing-zone/")
     )
 
   #  .partitionBy("year")
