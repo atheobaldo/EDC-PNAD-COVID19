@@ -49,8 +49,8 @@ spec:
         name: aws-credentials
         key: aws_secret_access_key
     cores: 2
-    instances: 3
-    memory: "6g"
+    instances: 2
+    memory: "4g"
     labels:
       version: 3.0.0
     volumeMounts:
