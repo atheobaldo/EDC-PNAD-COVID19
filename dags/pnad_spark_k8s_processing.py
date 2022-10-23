@@ -122,7 +122,7 @@ with DAG(
     )
 
     agregacao_por_faixa_etaria_monitor = SparkKubernetesSensor(
-        task_id='agregacao_regiao_monitor',
+        task_id='agregacao_por_faixa_etaria_monitor',
         namespace="airflow",
         application_name="{{ task_instance.xcom_pull(task_ids='agregacao_por_faixa_etaria')['metadata']['name'] }}",
         kubernetes_conn_id="kubernetes_default",
