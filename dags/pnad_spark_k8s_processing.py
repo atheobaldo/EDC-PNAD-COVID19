@@ -55,48 +55,5 @@ with DAG(
         kubernetes_conn_id="kubernetes_default",
     )
 
-    agregacao_por_regiao = SparkKubernetesOperator(
-        task_id='agregacao_por_regiao',
-        namespace="airflow",
-        application_file="agregacao_por_regiao.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
-
-    agregacao_por_regiao_monitor = SparkKubernetesSensor(
-        task_id='agregacao_regiao_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='agregacao_por_regiao')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
-
-    trigger_crawler_regiao = PythonOperator(
-        task_id='trigger_crawler_regiao',
-        python_callable=trigger_crawler_regiao,
-    )
-
-    agregacao_por_sexo = SparkKubernetesOperator(
-        task_id='agregacao_por_sexo',
-        namespace="airflow",
-        application_file="agregacao_por_sexo.yaml",
-        kubernetes_conn_id="kubernetes_default",
-        do_xcom_push=True,
-    )
-
-    agregacao_por_sexo_monitor = SparkKubernetesSensor(
-        task_id='agregacao_por_sexo_monitor',
-        namespace="airflow",
-        application_name="{{ task_instance.xcom_pull(task_ids='agregacao_por_sexo')['metadata']['name'] }}",
-        kubernetes_conn_id="kubernetes_default",
-    )
-
-    trigger_crawler_sexo = PythonOperator(
-        task_id='trigger_crawler_sexo',
-        python_callable=trigger_crawler_sexo,
-    )
-
 converte_parquet >> converte_parquet_monitor 
-converte_parquet_monitor >> agregacao_por_regiao >> agregacao_por_regiao_monitor
-converte_parquet_monitor >> agregacao_por_sexo >> agregacao_por_sexo_monitor
-agregacao_por_regiao_monitor >> trigger_crawler_regiao
-agregacao_por_sexo_monitor >> trigger_crawler_sexo
+

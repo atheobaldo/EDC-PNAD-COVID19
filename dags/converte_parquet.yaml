@@ -33,7 +33,7 @@ spec:
         key: aws_secret_access_key
     cores: 1
     coreLimit: "1200m"
-    memory: "1g"
+    memory: "512m"
     labels:
       version: 3.0.0
     serviceAccount: airflow-worker
@@ -50,7 +50,7 @@ spec:
         key: aws_secret_access_key
     cores: 2
     instances: 2
-    memory: "4g"
+    memory: "3g"
     labels:
       version: 3.0.0
     volumeMounts:
