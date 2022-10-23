@@ -1,7 +1,5 @@
 
-FROM gcr.io/spark-operator/spark-py:v3.0.0
-LABEL MAINTAINER Carlos Barbosa 
-LABEL EMAIL carlos.barbosa@a3data.com.br
+FROM gcr.io/spark-operator/spark:v3.1.1
 
 # using root
 USER root:root
